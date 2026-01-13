@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+/* Anti “barre à droite” / débordement horizontal */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}

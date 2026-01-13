@@ -81,9 +81,16 @@ export default function App() {
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {LINKS.map((l) => (
-                <LuxLink key={l.label} {...l} />
-              ))}
+              {LINKS.map(
+                (l: {
+                  label: string;
+                  meta: string;
+                  href: string;
+                  primary?: boolean;
+                }) => (
+                  <LuxLink key={l.label} {...l} />
+                )
+              )}
               <LuxLink
                 label="Me contacter"
                 meta={PROFILE.email}
@@ -92,7 +99,7 @@ export default function App() {
             </div>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {HIGHLIGHTS.map((h) => (
+              {HIGHLIGHTS.map((h: { k: string; v: string }) => (
                 <div
                   key={h.k}
                   className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"

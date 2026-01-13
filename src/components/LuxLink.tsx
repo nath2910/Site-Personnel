@@ -1,4 +1,11 @@
-import { THEME } from "../styles/theme";
+import { THEME } from "../styles/theme.ts";
+
+export type LuxLinkProps = {
+  label: string;
+  meta: string;
+  href: string;
+  primary?: boolean;
+};
 
 function Arrow() {
   return (
@@ -14,7 +21,7 @@ function Arrow() {
   );
 }
 
-export function LuxLink({ label, meta, href, primary }) {
+export function LuxLink({ label, meta, href, primary }: LuxLinkProps) {
   const external = href.startsWith("http");
 
   return (
@@ -32,13 +39,9 @@ export function LuxLink({ label, meta, href, primary }) {
       ].join(" ")}
       style={{ transform: "translateZ(0)" }}
     >
-      {/* Accent gradient border (subtil) */}
       <span
         aria-hidden="true"
-        className={[
-          "pointer-events-none absolute inset-0 -z-10 rounded-2xl opacity-0 blur-0 transition-opacity duration-300",
-          "group-hover:opacity-100",
-        ].join(" ")}
+        className="pointer-events-none absolute inset-0 -z-10 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
             "radial-gradient(700px 240px at 15% 0%, rgba(139,92,246,.22), transparent 55%), radial-gradient(600px 240px at 90% 30%, rgba(34,211,238,.14), transparent 55%)",

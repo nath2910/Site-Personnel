@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-export function Intro({ initials, onDone }) {
+export function Intro({
+  initials,
+  onDone,
+}: {
+  initials: string;
+  onDone: () => void;
+}) {
   useEffect(() => {
     const t = setTimeout(onDone, 900);
     return () => clearTimeout(t);

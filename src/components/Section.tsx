@@ -1,4 +1,14 @@
-export function Section({ eyebrow, title, children }) {
+import type { ReactNode } from "react";
+
+export function Section({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow?: string;
+  title?: string;
+  children: ReactNode;
+}) {
   return (
     <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
       {eyebrow && (

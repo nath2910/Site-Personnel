@@ -1,15 +1,58 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { PROFILE, LINKS, HIGHLIGHTS } from "../data/content";
+import type { Locale, LinkItem, ProjectItem } from "../data/content";
+import {
+  PROFILE,
+  LINKS,
+  COPY,
+  PROJECTS_FR,
+  PROJECTS_EN,
+} from "../data/content";
 import { THEME } from "../styles/theme";
 import { Intro } from "../components/Intro";
 import { LuxLink } from "../components/LuxLink";
 import { Pill } from "../components/Pill";
 import { Section } from "../components/Section";
 
+function LangToggle({
+  locale,
+  setLocale,
+}: {
+  locale: Locale;
+  setLocale: (l: Locale) => void;
+}) {
+  const base = "rounded-xl border px-3 py-1 text-xs transition";
+  const active = "bg-white/10 text-white border-white/20";
+  const idle =
+    "bg-white/[0.03] text-white/70 border-white/10 hover:bg-white/[0.06]";
+
+  return (
+    <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-1">
+      <button
+        type="button"
+        onClick={() => setLocale("fr")}
+        className={`${base} ${locale === "fr" ? active : idle}`}
+      >
+        FR
+      </button>
+      <button
+        type="button"
+        onClick={() => setLocale("en")}
+        className={`${base} ${locale === "en" ? active : idle}`}
+      >
+        EN
+      </button>
+    </div>
+  );
+}
+
 export default function App() {
   const [intro, setIntro] = useState(true);
+  const [locale, setLocale] = useState<Locale>("fr");
   const year = useMemo(() => new Date().getFullYear(), []);
+
+  const t = COPY[locale];
+  const projects: ProjectItem[] = locale === "fr" ? PROJECTS_FR : PROJECTS_EN;
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#070812] text-white antialiased">
@@ -19,8 +62,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Background “premium” mais perf-friendly: pas de gros blur */}
-      <div className=" fixed inset-0 overflow-hidden">
+      {/* Background : derrière tout, ne capte jamais la souris */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div
           className={`absolute inset-0 bg-gradient-to-br ${THEME.accent}`}
           style={{ opacity: 0.9 }}
@@ -35,7 +78,7 @@ export default function App() {
         <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_0%,rgba(255,255,255,.08),transparent_60%)]" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-5xl px-5 py-14">
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-5 py-14">
         {/* Header */}
         <header className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-center gap-3">
@@ -48,16 +91,15 @@ export default function App() {
               <div className="text-sm font-semibold tracking-tight">
                 {PROFILE.name}
               </div>
-              <div className="text-xs text-white/65">{PROFILE.location}</div>
+              <div className="text-xs text-white/65">{t.header.location}</div>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            <Pill>Etudiant</Pill>
-          </div>
+          {/* Toggle langue en haut à droite */}
+          <LangToggle locale={locale} setLocale={setLocale} />
         </header>
 
-        {/* Hero */}
+        {/* Hero (on garde tes titres) */}
         <section className="mt-7 rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:p-8">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -65,87 +107,106 @@ export default function App() {
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="text-xs uppercase tracking-[0.38em] text-white/60">
-              Site Personnel
+              {t.hero.eyebrow}
             </div>
 
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
-              Bienvenue sur mon site
+              {t.hero.title}
             </h1>
-            <br></br>
-            <h2 className="  text-3xl font-semibold tracking-tight sm:text-2xl">
-              Il repertorie tout mes liens personnel ainsi que mes projets !
-            </h2>
 
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base">
-              <span className="font-medium text-white">{PROFILE.role}</span>
-
-              <br />
-              {PROFILE.tagline}
+            <p className="mt-3 max-w-2xl text-lg font-medium text-white/80 sm:text-xl">
+              {t.hero.subtitle}
             </p>
 
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-base">
+              <span className="font-semibold text-white">{t.hero.role}</span>
+              <br />
+              {t.hero.tagline}
+            </p>
+
+            {/* Links */}
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {LINKS.map(
-                (l: {
-                  label: string;
-                  meta: string;
-                  href: string;
-                  primary?: boolean;
-                }) => (
-                  <LuxLink key={l.label} {...l} />
-                )
-              )}
+              {LINKS.map((l: LinkItem) => (
+                <LuxLink key={l.label} {...l} />
+              ))}
               <LuxLink
-                label="Me contacter"
+                label={t.labels.contact}
                 meta={PROFILE.email}
                 href={`mailto:${PROFILE.email}`}
               />
             </div>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {HIGHLIGHTS.map((h: { k: string; v: string }) => (
-                <div
-                  key={h.k}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
-                >
-                  <div className="text-xs uppercase tracking-[0.34em] text-white/60">
-                    {h.k}
-                  </div>
-                  <div className="mt-2 text-sm font-medium text-white">
-                    {h.v}
-                  </div>
-                </div>
-              ))}
+            {/* Small highlight row */}
+            <div className="mt-6 flex flex-wrap gap-2">
+              <Pill>Product Owner</Pill>
+              <Pill>Gestion de projet IT</Pill>
+              <Pill>Agile</Pill>
+              <Pill>Jira / Confluence</Pill>
             </div>
           </motion.div>
         </section>
 
-        {/* Sections */}
-        <div className="mt-6 grid gap-5 md:grid-cols-2">
-          <Section eyebrow="Selected work" title="Ce que je mets en avant">
-            <p className="text-sm leading-relaxed text-white/70">
-              Ici tu peux ajouter 2–3 items concrets (ex: Sneaknik + un mini
-              projet + une contribution). Le but : donner un angle clair à ton
-              profil.
-            </p>
+        {/* Content */}
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <Section title={t.sections.projects.title}>
+            <div className="space-y-4">
+              {projects.map((p) => (
+                <div
+                  key={p.title}
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="text-sm font-semibold text-white">
+                        {p.title}
+                      </div>
+                      <p className="mt-1 text-sm leading-relaxed text-white/70">
+                        {p.desc}
+                      </p>
+                    </div>
+
+                    {p.href ? (
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="shrink-0 text-xs text-white/70 underline-offset-4 hover:underline"
+                      >
+                        {t.labels.open}
+                      </a>
+                    ) : null}
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {p.tags.map((tag) => (
+                      <Pill key={tag}>{tag}</Pill>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </Section>
 
-          <Section eyebrow="À propos" title="En bref">
+          <Section title={t.sections.more.title}>
             <p className="text-sm leading-relaxed text-white/70">
-              Fais 4–6 lignes très “recruteur” : ce que tu fais, ce que tu
-              cherches, et ce qui te différencie (rigueur, perf, UX, sens
-              produit).
+              Je fais également de l’achat-revente sur mon temps personnel.
             </p>
+            <p className="mt-2 text-sm leading-relaxed text-white/70">
+              Ça m’a apporté des réflexes utiles en produit : gestion, analyse,
+              arbitrage, négociation, et sens du marché.
+            </p>
+
             <div className="mt-4 flex flex-wrap gap-2">
-              <Pill>UI/UX</Pill>
-              <Pill>Perf</Pill>
-              <Pill>Qualité</Pill>
-              <Pill>API</Pill>
+              <Pill>Gestion de stock</Pill>
+              <Pill>Analyse de marché</Pill>
+              <Pill>Négociation</Pill>
+              <Pill>Relation client</Pill>
             </div>
           </Section>
         </div>
 
         <footer className="mt-10 text-center text-xs text-white/45">
-          © {year} {PROFILE.name} • React + Tailwind
+          © {year} {PROFILE.name}
         </footer>
       </div>
     </div>

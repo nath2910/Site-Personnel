@@ -20,7 +20,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Background “premium” mais perf-friendly: pas de gros blur */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+      <div className=" fixed inset-0 overflow-hidden">
         <div
           className={`absolute inset-0 bg-gradient-to-br ${THEME.accent}`}
           style={{ opacity: 0.9 }}
@@ -53,9 +53,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Pill>React</Pill>
-            <Pill>Tailwind</Pill>
-            <Pill>Product</Pill>
+            <Pill>Etudiant</Pill>
           </div>
         </header>
 
@@ -67,16 +65,21 @@ export default function App() {
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="text-xs uppercase tracking-[0.38em] text-white/60">
-              Hub personnel
+              Site Personnel
             </div>
 
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
-              Une page propre. Des liens utiles. Zéro bruit.
+              Bienvenue sur mon site
             </h1>
+            <br></br>
+            <h2 className="  text-3xl font-semibold tracking-tight sm:text-2xl">
+              Il repertorie tout mes liens personnel ainsi que mes projets !
+            </h2>
 
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base">
               <span className="font-medium text-white">{PROFILE.role}</span>
-              <span className="text-white/50"> — </span>
+
+              <br />
               {PROFILE.tagline}
             </p>
 

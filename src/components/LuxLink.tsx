@@ -30,18 +30,19 @@ export function LuxLink({ label, meta, href, primary }: LuxLinkProps) {
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
       className={[
-        "group relative flex items-center justify-between gap-4 rounded-2xl border px-4 py-4",
+        "group relative isolate flex items-center justify-between gap-4 rounded-2xl border px-4 py-4",
         "border-white/10 bg-white/[0.04] text-white transition",
-        "hover:bg-white/[0.06] hover:border-white/15",
+        "hover:bg-white/[0.07] hover:border-white/20",
+        "hover:-translate-y-0.5 hover:scale-[1.01] transition-transform",
         "focus:outline-none focus-visible:ring-2",
         THEME.ring,
-        "will-change-transform",
       ].join(" ")}
       style={{ transform: "translateZ(0)" }}
     >
+      {/* fond accent : derrière, et ne capte jamais la souris */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className=" absolute inset-0 -z-10 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
             "radial-gradient(700px 240px at 15% 0%, rgba(139,92,246,.22), transparent 55%), radial-gradient(600px 240px at 90% 30%, rgba(34,211,238,.14), transparent 55%)",

@@ -1,11 +1,11 @@
 export const PROFILE = {
   initials: "NT",
   name: "Nathan Talvasson",
-  role: "Développeur Frontend • Produit • React",
+  role: "Étudiant en Master Management des Systèmes d’Information ",
   location: "La Rochelle • Concarneau",
   email: "nathantalvasson@gmail.com",
   tagline:
-    "Je construis des interfaces propres, rapides et agréables. Voici un hub minimal pour voir mon application, mon profil et mon code.",
+    "Actuellement en recherche d'une alternance dans le domaine de la gestion de projet IT, je cherche a mettre en pratique mon experience de Product Owner à JCDecaux, de chargé de projet à Cerealog mais aussi des competences que j'ai acquise durant mes projets Personnel.",
 };
 
 export const LINKS = [
@@ -24,12 +24,12 @@ export const LINKS = [
   {
     label: "CV (PDF)",
     meta: "Télécharger",
-    href: "public/CVNathanTalvasson.pdf",
+    href: "/CVNathanTalvasson.pdf",
   },
 ];
 
 export const HIGHLIGHTS = [
-  { k: "Focus", v: "UI/UX, performance, finitions" },
-  { k: "Approche", v: "Produit, clarté, simplicité" },
-  { k: "Stack", v: "React, Tailwind, TypeScript" },
+  { k: "Qualités", v: "Proactif, Organisé, Dynamique" },
+  { k: "Competences", v: "Gestion de projet, Infomatique, simplicité" },
+  { k: "Hobbys", v: "Informatique, Course à pied, Guitare" },
 ];

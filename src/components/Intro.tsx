@@ -33,7 +33,7 @@ export function Intro({
 
         <div className="text-center">
           <div className="text-xs uppercase tracking-[0.38em] text-white/60">
-            Portfolio
+            Site Personnel
           </div>
           <motion.div
             className="mt-4 h-px w-44 bg-gradient-to-r from-violet-500/60 via-white/20 to-cyan-400/50"

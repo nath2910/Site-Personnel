@@ -27,7 +27,12 @@ export type Copy = {
   };
   sections: {
     projects: { title: string };
-    more: { title: string };
+    more: {
+      title: string;
+      description1: string;
+      description2: string;
+      tags: string[];
+    };
   };
   labels: {
     open: string;
@@ -72,8 +77,8 @@ export const PROJECTS_FR: ProjectItem[] = [
   },
   {
     title: "Deck Builder (Java)",
-    desc: "Développement d’un jeu type deck-builder : logique métier, règles, itérations.",
-    tags: ["Java", "OOP"],
+    desc: "Développement d’un jeu vidéo nommé Slay The Spire, orienté deck-builder : logique métier, règles, itérations.",
+    tags: ["Java", "POO", "Gestion de Projet"],
   },
 ];
 
@@ -90,7 +95,7 @@ export const PROJECTS_EN: ProjectItem[] = [
   },
   {
     title: "Deck Builder (Java)",
-    desc: "Deck-builder game: business logic, rules, iteration loop.",
+    desc: "Deck-builder video game called Slay The Spire, business logic, rules, iteration loop.",
     tags: ["Java", "OOP"],
   },
 ];
@@ -105,11 +110,23 @@ export const COPY: Record<Locale, Copy> = {
         "Il répertorie tous mes liens personnels ainsi que mes projets !",
       role: "Product Owner • Gestion de projet IT",
       tagline:
-        "Licence d’informatique, actuellement en Master Management des Systèmes d’Information (IAE La Rochelle). Je m’oriente vers le Product Owner et la gestion de projet IT : cadrage, priorisation, suivi de delivery et coordination. Mon parcours tech me permet de dialoguer efficacement avec des équipes de développement, sans me positionner comme développeur full-time.",
+        "Issu d'une licence d’informatique, actuellement en Master Management des Systèmes d’Information (IAE La Rochelle). Je cherche actuellement une alternance en tant que Product Owner ainsi que dans la gestion de projet IT. Mon parcours à double competences me permet de dialoguer efficacement avec des équipes de développement, mais egalement de diriger une équipe lors de differentes missions.",
     },
     sections: {
       projects: { title: "Mes projets" },
-      more: { title: "De plus !" },
+      more: {
+        title: "Experiences Supllementaire",
+        description1:
+          "À côté de mon parcours professionnel, je gère depuis 6 ans une activité d’achat-revente sur mon temps personnel. Ce qui n’était au début qu'une curiosité est devenu une solide source de revenus et, surtout, un excellent terrain d'apprentissage.",
+        description2:
+          "Cette expérience m’a naturellement apporté des réflexes très utiles en Produit : j’ai appris à analyser les tendances du marché, à gérer des priorités et à négocier au quotidien. C’est un exercice concret d’arbitrage et de gestion qui m'aide à garder un état d’esprit pragmatique.",
+        tags: [
+          "Analyse de marché",
+          "Négociation",
+          "Gestion de stock",
+          "Relation Client",
+        ],
+      },
     },
     labels: {
       open: "Ouvrir",
@@ -122,14 +139,26 @@ export const COPY: Record<Locale, Copy> = {
     hero: {
       eyebrow: "Personal site",
       title: "Welcome to my personal hub",
-      subtitle: "Useful links + projects, all in one place.",
+      subtitle: "It lists all my personal links and projects!",
       role: "Product Owner • IT Project Management",
       tagline:
-        "BSc in Computer Science, currently pursuing an MSc in Management Information Systems (IAE La Rochelle). I’m moving toward Product Owner and IT project delivery: scoping, prioritization, delivery follow-up and coordination. My technical background helps me work smoothly with dev teams, without positioning myself as a full-time developer.",
+        "With a bachelor's degree in computer science, currently pursuing a master's degree in Information Systems Management (IAE La Rochelle). I am currently looking for a work-study program as a Product Owner and in IT project management. My dual skill set allows me to communicate effectively with development teams, but also to lead a team on various projects.",
     },
     sections: {
       projects: { title: "My projects" },
-      more: { title: "More" },
+      more: {
+        title: "Side Business & Experience",
+        description1:
+          "For the past six years, I have been managing a personal resale activity. What started as a hobby has grown into a consistent revenue stream and, more importantly, a great practical learning ground.",
+        description2:
+          "This experience has helped me sharpen key product skills: market trend analysis, priority management, and daily negotiation. It is a hands-on exercise in arbitrage and management that keeps me pragmatic and results-oriented.",
+        tags: [
+          "Market Analysis",
+          "Negotiation",
+          "Inventory Management",
+          "Customer Relationship",
+        ],
+      },
     },
     labels: {
       open: "Open",

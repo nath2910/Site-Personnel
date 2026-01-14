@@ -188,19 +188,19 @@ export default function App() {
           </Section>
 
           <Section title={t.sections.more.title}>
-            <p className="text-sm leading-relaxed text-white/70">
-              Je fais également de l’achat-revente sur mon temps personnel.
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-white/70">
-              Ça m’a apporté des réflexes utiles en produit : gestion, analyse,
-              arbitrage, négociation, et sens du marché.
-            </p>
+            <div className="space-y-3">
+              <p className="text-sm leading-relaxed text-white/70">
+                {t.sections.more.description1}
+              </p>
+              <p className="text-sm leading-relaxed text-white/70">
+                {t.sections.more.description2}
+              </p>
+            </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Pill>Gestion de stock</Pill>
-              <Pill>Analyse de marché</Pill>
-              <Pill>Négociation</Pill>
-              <Pill>Relation client</Pill>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {t.sections.more.tags.map((tag) => (
+                <Pill key={tag}>{tag}</Pill>
+              ))}
             </div>
           </Section>
         </div>

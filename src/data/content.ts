@@ -115,7 +115,7 @@ export const COPY: Record<Locale, Copy> = {
     sections: {
       projects: { title: "Mes projets" },
       more: {
-        title: "Experiences Supllementaire",
+        title: "Experiences Supllementaires",
         description1:
           "À côté de mon parcours professionnel, je gère depuis 6 ans une activité d’achat-revente sur mon temps personnel. Ce qui n’était au début qu'une curiosité est devenu une solide source de revenus et, surtout, un excellent terrain d'apprentissage.",
         description2:

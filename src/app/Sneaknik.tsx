@@ -5,14 +5,13 @@ import { Pill } from "../components/Pill";
 
 type Locale = "fr" | "en";
 
-function useAutoplayOnView(videoRef: React.RefObject<HTMLVideoElement>) {
+function useAutoplayOnView(ref: React.RefObject<HTMLVideoElement | null>) {
   useEffect(() => {
-    const el = videoRef.current;
+    const el = ref.current;
     if (!el) return;
 
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (!el) return;
         if (entry.isIntersecting) {
           el.play().catch(() => {});
         } else {
@@ -24,7 +23,7 @@ function useAutoplayOnView(videoRef: React.RefObject<HTMLVideoElement>) {
 
     obs.observe(el);
     return () => obs.disconnect();
-  }, [videoRef]);
+  }, [ref]);
 }
 
 const reveal = {
@@ -34,7 +33,7 @@ const reveal = {
 
 export default function Sneaknik({ locale }: { locale: Locale }) {
   const year = useMemo(() => new Date().getFullYear(), []);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useAutoplayOnView(videoRef);
 

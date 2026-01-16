@@ -136,7 +136,7 @@ export default function Sneaknik({ locale }: { locale: Locale }) {
 
           <div className="mt-6 flex flex-wrap gap-2">
             <Pill>Gestion</Pill>
-            <Pill>Analyse</Pill>
+            <Pill>Analyses</Pill>
             <Pill>Comparatif</Pill>
             <Pill>Surveillance</Pill>
           </div>

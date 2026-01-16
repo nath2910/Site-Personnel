@@ -161,7 +161,7 @@ export default function Sneaknik({ locale }: { locale: Locale }) {
             <video
               ref={videoRef}
               className="block w-full"
-              src="/public/sneaknikpres.mp4"
+              src="/public/sneaknikpresLess.mp4"
               poster="/sneaknik-poster.jpg"
               muted
               playsInline

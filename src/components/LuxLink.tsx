@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
-import { THEME } from "../styles/theme";
+import { Link } from "react-router-dom";
 import type { LinkItem } from "../data/content";
+import { THEME } from "../styles/theme";
+
+const MotionLink = motion(Link);
 
 function Arrow() {
   return (
@@ -16,47 +19,30 @@ function Arrow() {
   );
 }
 
-export function LuxLink({ label, meta, href, primary }: LinkItem) {
-  const external = href.startsWith("http");
+const baseClass =
+  "relative z-20 isolate pointer-events-auto flex items-center justify-between gap-4 rounded-2xl border px-4 py-4 " +
+  "border-white/10 bg-white/[0.04] text-white focus:outline-none focus-visible:ring-2 " +
+  THEME.ring;
 
+const accentStyle = {
+  background:
+    "radial-gradient(700px 240px at 15% 0%, rgba(139,92,246,.22), transparent 55%), radial-gradient(600px 240px at 90% 30%, rgba(34,211,238,.14), transparent 55%)",
+};
+
+function Inner({
+  label,
+  meta,
+  primary,
+}: Pick<LinkItem, "label" | "meta" | "primary">) {
   return (
-    <motion.a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer" : undefined}
-      className={[
-        "relative z-20 isolate pointer-events-auto",
-        "flex items-center justify-between gap-4 rounded-2xl border px-4 py-4",
-        "border-white/10 bg-white/[0.04] text-white",
-        "focus:outline-none focus-visible:ring-2",
-        THEME.ring,
-      ].join(" ")}
-      style={{ transform: "translateZ(0)" }}
-      whileHover={{ y: -3, scale: 1.01 }}
-      whileTap={{ scale: 0.99 }}
-      transition={{ duration: 0.18 }}
-    >
-      {/* Accent fond (ne capte jamais la souris) */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 rounded-2xl opacity-0"
-        style={{
-          background:
-            "radial-gradient(700px 240px at 15% 0%, rgba(139,92,246,.22), transparent 55%), radial-gradient(600px 240px at 90% 30%, rgba(34,211,238,.14), transparent 55%)",
-        }}
-      />
-
-      {/* On anime l’opacité via Framer (pas via :hover) */}
+    <>
       <motion.span
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 rounded-2xl"
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
         transition={{ duration: 0.2 }}
-        style={{
-          background:
-            "radial-gradient(700px 240px at 15% 0%, rgba(139,92,246,.22), transparent 55%), radial-gradient(600px 240px at 90% 30%, rgba(34,211,238,.14), transparent 55%)",
-        }}
+        style={accentStyle}
       />
 
       <div className="min-w-0">
@@ -77,6 +63,38 @@ export function LuxLink({ label, meta, href, primary }: LinkItem) {
           <Arrow />
         </motion.span>
       </div>
+    </>
+  );
+}
+
+export function LuxLink({ label, meta, href, primary }: LinkItem) {
+  const isInternal = href.startsWith("/");
+
+  if (isInternal) {
+    return (
+      <MotionLink
+        to={href}
+        className={baseClass}
+        whileHover={{ y: -3, scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
+        transition={{ duration: 0.18 }}
+      >
+        <Inner label={label} meta={meta} primary={primary} />
+      </MotionLink>
+    );
+  }
+
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className={baseClass}
+      whileHover={{ y: -3, scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ duration: 0.18 }}
+    >
+      <Inner label={label} meta={meta} primary={primary} />
     </motion.a>
   );
 }

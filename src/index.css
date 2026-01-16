@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
 /* Anti “barre à droite” / débordement horizontal */
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   width: 100%;
   overflow-x: hidden;

@@ -52,9 +52,10 @@ export const LINKS: LinkItem[] = [
   {
     label: "Sneaknik",
     meta: "Mon application",
-    href: "https://sneaknik.pages.dev/",
+    href: "/sneaknik",
     primary: true,
   },
+
   {
     label: "LinkedIn",
     meta: "Profil",

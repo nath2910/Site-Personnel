@@ -157,17 +157,20 @@ export default function Sneaknik({ locale }: { locale: Locale }) {
           </div>
 
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/30">
-            <video
-              ref={videoRef}
-              className="block w-full"
-              src="/public/sneaknikpresLess.mp4"
-              poster="/sneaknik-poster.jpg"
-              muted
-              playsInline
-              loop
-              controls
-              preload="metadata"
-            />
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/30">
+              <div className="aspect-video w-full">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube.com/embed/jai2ywmjTFI?rel=0&modestbranding=1&playsinline=1"
+                  title="Sneaknik demo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+
+              <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10" />
+            </div>
+
             <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10" />
           </div>
 

@@ -67,9 +67,37 @@ function Inner({
   );
 }
 
+// Petit helper: détecte un fichier "asset" (au minimum PDF)
+function isAssetLink(href: string) {
+  // gère aussi les query params: .pdf?x=1
+  return /\.(pdf)($|\?)/i.test(href);
+  // Tu peux élargir si tu veux:
+  // return /\.(pdf|png|jpg|jpeg|gif|svg|webp|zip)($|\?)/i.test(href);
+}
+
 export function LuxLink({ label, meta, href, primary }: LinkItem) {
   const isInternal = href.startsWith("/");
+  const asset = isAssetLink(href);
 
+  // ✅ Cas important: lien interne mais vers un fichier (PDF) -> <a>, pas <Link>
+  if (isInternal && asset) {
+    return (
+      <motion.a
+        href={href}
+        className={baseClass}
+        whileHover={{ y: -3, scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
+        transition={{ duration: 0.18 }}
+        // ouvre dans un nouvel onglet (pratique pour un CV)
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Inner label={label} meta={meta} primary={primary} />
+      </motion.a>
+    );
+  }
+
+  // Routes internes SPA
   if (isInternal) {
     return (
       <MotionLink
@@ -84,6 +112,7 @@ export function LuxLink({ label, meta, href, primary }: LinkItem) {
     );
   }
 
+  // Liens externes
   return (
     <motion.a
       href={href}

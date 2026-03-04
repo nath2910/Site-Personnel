@@ -31,7 +31,7 @@ const reveal = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function Slash({ locale }: { locale: Locale }) {
+export default function Stash({ locale }: { locale: Locale }) {
   const year = useMemo(() => new Date().getFullYear(), []);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -41,9 +41,9 @@ export default function Slash({ locale }: { locale: Locale }) {
     locale === "fr"
       ? {
           back: "Retour",
-          title: "Slash",
+          title: "Stash",
           subtitle: "infos clés",
-          lead: "Slash est un outil de gestion de stock orienté Slash, pensé pour les indépendants et les passionnés. Il aide à suivre l’inventaire, garder une vue claire des paires (tailles, état, prix d’achat/vente, marge) et mieux piloter la revente au quotidien. L’objectif, c’est aussi de mettre en avant les boutiques indépendantes : faciliter la découverte, donner de la visibilité, et connecter l’usage “terrain” avec une gestion plus propre.",
+          lead: "Stash est un outil de gestion de stock orienté Stash, pensé pour les indépendants et les passionnés. Il aide à suivre l’inventaire, garder une vue claire des paires (tailles, état, prix d’achat/vente, marge) et mieux piloter la revente au quotidien. L’objectif, c’est aussi de mettre en avant les boutiques indépendantes : faciliter la découverte, donner de la visibilité, et connecter l’usage “terrain” avec une gestion plus propre.",
           ctaPrimary: "Ouvrir l’application",
           ctaSecondary: "Voir la démo",
           sections: {
@@ -59,9 +59,9 @@ export default function Slash({ locale }: { locale: Locale }) {
         }
       : {
           back: "Back",
-          title: "Slash",
+          title: "Stash",
           subtitle: "Product demo • video • key info",
-          lead: "Slash is a sneaker-focused inventory management tool built for independent shops and enthusiasts. It helps you track stock, keep a clean view of each pair (size, condition, buy/sell price, margin), and manage resale day to day without losing information. A key goal is also to support independent stores: making them easier to discover, giving them visibility, and connecting “real-world shopping” with better stock management. The video below shows the main flow and the product logic.",
+          lead: "Stash is a sneaker-focused inventory management tool built for independent shops and enthusiasts. It helps you track stock, keep a clean view of each pair (size, condition, buy/sell price, margin), and manage resale day to day without losing information. A key goal is also to support independent stores: making them easier to discover, giving them visibility, and connecting “real-world shopping” with better stock management. The video below shows the main flow and the product logic.",
           ctaPrimary: "Open the app",
           ctaSecondary: "Watch the demo",
           sections: {
@@ -76,7 +76,7 @@ export default function Slash({ locale }: { locale: Locale }) {
           ],
         };
 
-  const appUrl = "https://myslash.fr";
+  const appUrl = "https://mystash.fr";
 
   return (
     <motion.div
@@ -162,7 +162,7 @@ export default function Slash({ locale }: { locale: Locale }) {
                 <iframe
                   className="h-full w-full"
                   src="https://www.youtube.com/embed/jai2ywmjTFI?rel=0&modestbranding=1&playsinline=1"
-                  title="Slash demo"
+                  title="Stash demo"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
@@ -230,8 +230,8 @@ export default function Slash({ locale }: { locale: Locale }) {
 
           <p className="mt-4 text-sm leading-relaxed text-white/70">
             {locale === "fr"
-              ? "Pour l’instant, Slash est surtout pensé pour les revendeurs : organiser son stock, suivre ses paires et piloter la revente. La suite du projet, c’est d’aller plus loin en intégrant davantage l’écosystème : mettre en avant les boutiques indépendantes et faciliter la découverte. L’objectif : relier la gestion (stock, suivi) à l’exploration (repérer, comparer, suivre) — sans complexifier l’usage."
-              : "Right now, Slash is mainly built for resellers: organizing inventory, tracking pairs, and managing resale. The next step is to expand the scope by better connecting with the ecosystem: highlighting independent stores and making discovery easier. The goal is to link management (inventory, tracking) with exploration (spot, compare, follow) — without adding friction."}
+              ? "Pour l’instant, Stash est surtout pensé pour les revendeurs : organiser son stock, suivre ses paires et piloter la revente. La suite du projet, c’est d’aller plus loin en intégrant davantage l’écosystème : mettre en avant les boutiques indépendantes et faciliter la découverte. L’objectif : relier la gestion (stock, suivi) à l’exploration (repérer, comparer, suivre) — sans complexifier l’usage."
+              : "Right now, Stash is mainly built for resellers: organizing inventory, tracking pairs, and managing resale. The next step is to expand the scope by better connecting with the ecosystem: highlighting independent stores and making discovery easier. The goal is to link management (inventory, tracking) with exploration (spot, compare, follow) — without adding friction."}
           </p>
 
           <a
@@ -244,7 +244,7 @@ export default function Slash({ locale }: { locale: Locale }) {
           </a>
 
           <div className="mt-3 text-center text-xs text-white/45">
-            {year} • Slash • Talavsson
+            {year} • Stash • Talavsson
           </div>
         </motion.div>
       </section>

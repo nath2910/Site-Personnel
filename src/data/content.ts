@@ -50,9 +50,9 @@ export const PROFILE = {
 
 export const LINKS: LinkItem[] = [
   {
-    label: "Slash",
+    label: "Stash",
     meta: "Mon application",
-    href: "/Slash",
+    href: "/Stash",
     primary: true,
   },
 

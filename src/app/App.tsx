@@ -6,7 +6,7 @@ import { COPY, PROFILE } from "../data/content";
 import { THEME } from "../styles/theme";
 import { Intro } from "../components/Intro";
 import Home from "./Home";
-import Slash from "./Slash";
+import Stash from "./Stash";
 
 function LangToggle({
   locale,
@@ -94,7 +94,7 @@ export default function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home locale={locale} />} />
-            <Route path="/Slash" element={<Slash locale={locale} />} />
+            <Route path="/Stash" element={<Stash locale={locale} />} />
           </Routes>
         </AnimatePresence>
       </div>

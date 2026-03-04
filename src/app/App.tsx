@@ -94,7 +94,7 @@ export default function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home locale={locale} />} />
-            <Route path="/myslash" element={<Slash locale={locale} />} />
+            <Route path="/Slash" element={<Slash locale={locale} />} />
           </Routes>
         </AnimatePresence>
       </div>
